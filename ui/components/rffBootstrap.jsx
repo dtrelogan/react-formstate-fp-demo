@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react';
 import { rff } from 'react-formstate-fp';
 import BootstrapSelect from './Select.jsx';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
+import { Form, Button, Alert } from 'react-bootstrap';
+// import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Alert from 'react-bootstrap/Alert';
 import DatePicker from "react-datepicker";
 
 

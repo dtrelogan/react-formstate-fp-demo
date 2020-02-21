@@ -3,7 +3,8 @@ import { rff, FormScope, FormField } from 'react-formstate-fp';
 import Spinner from '../components/Spinner.jsx';
 import DemoFormContainer, { buildFormOptions, FormSuccessFeedback } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback, FormSubmissionErrorFeedback, ScopeFeedback, Submit } from '../components/rffBootstrap.jsx';
-import Form from 'react-bootstrap/Form';
+import { Form } from 'react-bootstrap';
+// import Form from 'react-bootstrap/Form';
 
 
 const initialModel = {

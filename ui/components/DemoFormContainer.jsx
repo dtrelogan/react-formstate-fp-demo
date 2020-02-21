@@ -3,11 +3,12 @@ import { rff } from 'react-formstate-fp';
 import Form from 'react-bootstrap/Form';
 import Spinner from './Spinner.jsx';
 import { calculatePrimed, FormSubmissionErrorFeedback, Submit } from './rffBootstrap.jsx';
-import Modal from 'react-bootstrap/Modal';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
+import { Modal, Container, Row, Col, Card } from 'react-bootstrap';
+// import Modal from 'react-bootstrap/Modal';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import Card from 'react-bootstrap/Card';
 
 
 

@@ -3,7 +3,8 @@ import { rff, useFormstate, FormScope, FormField } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
 import Dependent, { initialModel as dependentInitialModel, validationSchema as dependentValidationSchema } from './Dependent.jsx';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
+// import Button from 'react-bootstrap/Button';
 
 
 const initialModel = {

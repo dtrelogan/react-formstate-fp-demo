@@ -1,8 +1,9 @@
 import React from 'react';
 import { FormScope, FormField, rff } from 'react-formstate-fp';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, Button } from 'react-bootstrap';
+// import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
 
 
 export const initialModel = {

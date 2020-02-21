@@ -6,9 +6,15 @@ module.exports = {
     filename: 'bundle.min.js',
     path: path.resolve(__dirname, 'public'),
   },
-  mode: 'development',
-  optimization: {
-    minimize: false
+  // mode: 'development',
+  // optimization: {
+  //   minimize: false
+  // },
+  mode: 'production',
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-bootstrap': 'ReactBootstrap'
   },
   module: {
     rules: [

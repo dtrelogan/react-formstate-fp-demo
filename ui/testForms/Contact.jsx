@@ -2,8 +2,9 @@ import React from 'react';
 import Address, { initialModel as addressInitialModel, validationSchema as addressValidationSchema } from './Address.jsx';
 import { FormScope, FormField, rff } from 'react-formstate-fp';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Button, Card } from 'react-bootstrap';
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
 
 
 export const initialModel = {

@@ -2,7 +2,8 @@ import React from 'react';
 import { rff, useFormstate, FormScope, FormField } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { FormGroup, Input, InputFeedback, FormValidationErrorFeedback } from '../components/rffBootstrap.jsx';
-import Form from 'react-bootstrap/Form';
+import { Form } from 'react-bootstrap';
+// import Form from 'react-bootstrap/Form';
 
 
 const initialModel = {
