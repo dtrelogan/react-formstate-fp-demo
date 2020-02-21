@@ -1,2 +1,3 @@
-# react-formstate-functional-demo
-A demo of react-formstate-functional
+# react-formstate-fp-demo
+
+A demo of react-formstate-fp

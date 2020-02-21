@@ -1,0 +1,31 @@
+.jumbotron {padding: 20px; margin-bottom: 20px;}
+
+.main-title {margin-bottom: 20px; font-size: 18pt; font-weight: bold; color: green;}
+
+.demo-form-div {padding: 20px;}
+
+.react-datepicker-wrapper {width: 100% !important;}
+
+body {margin-bottom: 100px;}
+
+.required .form-label::after, .required .checkbox-label::after {content: '\2217';}
+
+.submit-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.form-error.closed {
+  max-height: 0px;
+  overflow: hidden;
+  -webkit-transition: max-height 1.25s;
+  transition: max-height 1.25s;
+}
+
+.form-error.open {
+  max-height: 175px;
+  overflow: hidden;
+  -webkit-transition: max-height 1.25s;
+  transition: max-height 1.25s;
+}
