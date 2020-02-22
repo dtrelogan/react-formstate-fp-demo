@@ -2,6 +2,8 @@ import React from 'react';
 import { rff, useFormstate } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback, ScopeFeedback } from '../components/rffBootstrap.jsx';
+import { ListGroup } from 'react-bootstrap';
+import Instructions from '../components/Instructions.jsx';
 
 
 const initialModel = {
@@ -45,9 +47,20 @@ export default function VerifiedAddressForm(props) {
   // "Verifying Address..."
   const submitMessage = rff.isFormSubmitting(formstate) && rff.isFormWaiting(formstate) ? rff.getMessage(formstate, '') : null;
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>Check out the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/VerifiedAddress.jsx'>source code</a>.</ListGroup.Item>
+        <ListGroup.Item>Scope-level asynchronous validation runs on submit: if line1 contains the word 'city' and line2 is empty, the address will fail verification.</ListGroup.Item>
+        <ListGroup.Item>Set line2 to 'validationfailure' to test an error during asynchronous validation.</ListGroup.Item>
+        <ListGroup.Item>Set line2 to 'apifailure' to test an error during form submission.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <DemoFormContainer formstate={formstate} form={form}>
-      <DemoForm formstate={formstate} form={form} submit={submit} submitMessage={submitMessage}>
+      <DemoForm formstate={formstate} form={form} submit={submit} submitMessage={submitMessage} instructions={instructions}>
         <ScopeFeedback {...modelKey('')}/>
         <InputAndFeedback type='text' label='Street Address Line 1' {...modelKey('line1')}/>
         <InputAndFeedback type='text' label='Street Address Line 2' {...modelKey('line2')}/>

@@ -2,6 +2,8 @@ import React from 'react';
 import { rff, useFormstate, FormScope, FormField } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
+import { ListGroup } from 'react-bootstrap';
+import Instructions from '../components/Instructions.jsx';
 
 
 const initialModel = {
@@ -38,9 +40,19 @@ export default function Event(props) {
   const initialFormstate = () => rff.initializeFormstate(props.model || initialModel, validationSchema);
   const [formstate, form] = useFormstate(initialFormstate, options);
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>Check out the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/Event.jsx'>source code</a>.</ListGroup.Item>
+        <ListGroup.Item>Scope validation: start date must be before end date.</ListGroup.Item>
+        <ListGroup.Item>Set the name to 'apifailure' to test an error during form submission.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <DemoFormContainer formstate={formstate} form={form}>
-      <DemoForm formstate={formstate} form={form} submit={submit}>
+      <DemoForm formstate={formstate} form={form} submit={submit} instructions={instructions}>
         <FormScope formstate={formstate} form={form}>
           <FormField name='name'>
             <InputAndFeedback type='text' label='Name'/>

@@ -3,8 +3,9 @@ import { rff, FormScope, FormField } from 'react-formstate-fp';
 import Spinner from '../components/Spinner.jsx';
 import DemoFormContainer, { buildFormOptions, FormSuccessFeedback } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback, FormSubmissionErrorFeedback, ScopeFeedback, Submit } from '../components/rffBootstrap.jsx';
-import { Form } from 'react-bootstrap';
+import { Form, ListGroup } from 'react-bootstrap';
 // import Form from 'react-bootstrap/Form';
+import Instructions from '../components/Instructions.jsx';
 
 
 const initialModel = {
@@ -78,6 +79,17 @@ export default function Login(props) {
     submitMessage = 'An unexpected error occurred';
   }
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>Check out the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/Login.jsx'>source code</a>.</ListGroup.Item>
+        <ListGroup.Item>For a valid login use username 'buster' and password 'password'.</ListGroup.Item>
+        <ListGroup.Item>An invalid login sets the root scope invalid and sets the message there. A change to any field within root scope clears the message.</ListGroup.Item>
+        <ListGroup.Item>Set username to 'apifailure' to test an error during form submission.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <div>
       <DemoFormContainer formstate={formstate} form={form}>
@@ -102,6 +114,7 @@ export default function Login(props) {
             />
           </FormScope>
         </Form>
+        {instructions}
       </DemoFormContainer>
     </div>
   );

@@ -55,9 +55,43 @@ export default function Demo() {
 
   let runAsyncIfInvalidCheckbox = null, acknowledgeAsyncErrorsCheckbox = null, usernameSynclyValidCheckbox = null,
   clearConfirmPasswordCheckbox = null, ignoreEmptyPasswordFieldCheckbox = null, suppressValidFeedbackCheckbox = null,
-  useFormRefCheckbox = null;
+  useFormRefCheckbox = null, whenToValidateAsync = null, whenToPrime = null, otherSettings = null;
 
-  if (state.formName === 'UserAccount' || state.formName === 'VerifiedAddress' || state.formName === 'UserAccountAwait') {
+  if (state.formName !== 'Readme') {
+    whenToPrime = (
+      <Form.Group className='select-when-to-prime' controlId='selectWhenToPrime'>
+        <Form.Label>Prime</Form.Label>
+        <Select
+          optionValues={[{id: 'onChange', name: 'onChange'},{id: 'onChangeThenBlur', name: 'onChangeThenBlur'},{id: 'onBlur', name: 'onBlur'},{id: 'onSubmit', name: 'onSubmit'}]}
+          value={state.whenToPrime}
+          onChange={(e) => setState({...state, formInstanceKey: nextKey++, whenToPrime: e.target.value})}
+        />
+      </Form.Group>
+    );
+
+    otherSettings = (
+      <Button
+        size='md'
+        variant={state.showConfig ? 'secondary' : 'outline-secondary'}
+        onClick={() => setState({...state, showConfig: !state.showConfig})}
+      >
+        Other Settings
+      </Button>
+    );
+  }
+
+  if (state.formName === 'UserAccount' || state.formName === 'UserAccountAwait') {
+    whenToValidateAsync = (
+      <Form.Group className='select-validate-async-on' controlId='selectValidateAsyncOn'>
+        <Form.Label>Validate Async</Form.Label>
+        <Select
+          optionValues={[{id: 'onChange', name: 'onChange'},{id: 'onBlur', name: 'onBlur'},{id: 'onSubmit', name: 'onSubmit'}]}
+          value={state.whenToValidateAsync}
+          onChange={(e) => setState({...state, formInstanceKey: nextKey++, whenToValidateAsync: e.target.value})}
+        />
+      </Form.Group>
+    );
+
     runAsyncIfInvalidCheckbox = (
       <Form.Check
         id='runAsyncIfInvalid'
@@ -68,9 +102,7 @@ export default function Demo() {
         onChange={() => {}}
       />
     );
-  }
 
-  if (state.formName === 'UserAccount' || state.formName === 'UserAccountAwait') {
     acknowledgeAsyncErrorsCheckbox = (
       <Form.Check
         id='acknowledgeAsyncErrors'
@@ -161,37 +193,17 @@ export default function Demo() {
               </Form.Group>
             </Col>
             <Col xs={6} sm={3} md={3} lg={2}>
-              <Form.Group className='select-when-to-prime' controlId='selectWhenToPrime'>
-                <Form.Label>Prime</Form.Label>
-                <Select
-                  optionValues={[{id: 'onChange', name: 'onChange'},{id: 'onChangeThenBlur', name: 'onChangeThenBlur'},{id: 'onBlur', name: 'onBlur'},{id: 'onSubmit', name: 'onSubmit'}]}
-                  value={state.whenToPrime}
-                  onChange={(e) => setState({...state, formInstanceKey: nextKey++, whenToPrime: e.target.value})}
-                />
-              </Form.Group>
+              {whenToPrime}
             </Col>
             <Col xs={6} sm={3} md={3} lg={2}>
-              <Form.Group className='select-validate-async-on' controlId='selectValidateAsyncOn'>
-                <Form.Label>Validate Async</Form.Label>
-                <Select
-                  optionValues={[{id: 'onChange', name: 'onChange'},{id: 'onBlur', name: 'onBlur'},{id: 'onSubmit', name: 'onSubmit'}]}
-                  value={state.whenToValidateAsync}
-                  onChange={(e) => setState({...state, formInstanceKey: nextKey++, whenToValidateAsync: e.target.value})}
-                />
-              </Form.Group>
+              {whenToValidateAsync}
             </Col>
           </Form.Row>
           <ButtonToolbar>
             <Button size='md' style={{marginRight: '10px'}} onClick={resetForm}>
               Reset Form
             </Button>
-            <Button
-              size='md'
-              variant={state.showConfig ? 'secondary' : 'outline-secondary'}
-              onClick={() => setState({...state, showConfig: !state.showConfig})}
-            >
-              Other Settings
-            </Button>
+            {otherSettings}
           </ButtonToolbar>
           <Card style={state.showConfig ? null : {display: 'none'}}>
             <Card.Body>

@@ -2,8 +2,9 @@ import React from 'react';
 import { rff, useFormstate, FormScope, FormField } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { FormGroup, Input, InputFeedback, FormValidationErrorFeedback } from '../components/rffBootstrap.jsx';
-import { Form } from 'react-bootstrap';
+import { Form, ListGroup } from 'react-bootstrap';
 // import Form from 'react-bootstrap/Form';
+import Instructions from '../components/Instructions.jsx';
 
 
 const initialModel = {
@@ -58,9 +59,25 @@ export default function UserAccount(props) {
     validationErrorFeedback = <FormValidationErrorFeedback formstate={formstate} modelKey='username' form={form}/>;
   }
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>Check out the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/UserAccount.jsx'>source code</a>.</ListGroup.Item>
+        <ListGroup.Item>Existing usernames are 'buster' and 'taken'.</ListGroup.Item>
+        <ListGroup.Item>Set the username to 'validationfailure' to test an error during asynchronous validation.</ListGroup.Item>
+        <ListGroup.Item>Set the username to 'apifailure' to test an error during form submission.</ListGroup.Item>
+        <ListGroup.Item>To test 'Run Async onSubmit Even If Model Is Syncly Invalid', only populate the username field and hit submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Require Acknowledgement of Async Validation Errors', set the username to 'validationfailure' and tab to the next field without hitting submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: immediately', only populate the username field and hit submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: afterAsync', only populate the username field and hit submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: onCancel', set 'Edit Existing Model', set username to 'apifailure', and hit submit.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <DemoFormContainer formstate={formstate} form={form}>
-      <DemoForm formstate={formstate} form={form} submit={submit}>
+      <DemoForm formstate={formstate} form={form} submit={submit} instructions={instructions}>
         {validationErrorFeedback}
         <FormScope formstate={formstate} form={form}>
           <FormField name='name'>

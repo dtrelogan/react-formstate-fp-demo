@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { rff, FormScope, FormField } from 'react-formstate-fp';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
 import Spinner from '../components/Spinner.jsx';
+import { ListGroup } from 'react-bootstrap';
+import Instructions from '../components/Instructions.jsx';
+
 
 const initialModel = {
   oldPassword: '',
@@ -39,6 +42,16 @@ export default function ExampleForm()
   const submitting = rff.isFormSubmitting(formstate);
   const disabled = submitting || rff.isPrimedModelInvalid(formstate, form.calculatePrimed);
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>The <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/Readme.jsx'>source code</a>, straight from the <a href='https://github.com/dtrelogan/react-formstate-fp/blob/HEAD/doc/BasicExample.md'>documentation</a>.</ListGroup.Item>
+        <ListGroup.Item>Set old password to 'TheRightPassword' to change the password successfully.</ListGroup.Item>
+        <ListGroup.Item>Set old password to 'TestThrowingAnError' to test an error during form submission.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <form onSubmit={(e) => submit(e, form)}>
       <Spinner visible={submitting}/>
@@ -54,6 +67,7 @@ export default function ExampleForm()
         </FormField>
       </FormScope>
       <input type='submit' value='Submit' disabled={disabled}/>
+      {instructions}
     </form>
   );
 }

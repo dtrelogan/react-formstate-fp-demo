@@ -30,7 +30,7 @@ export function buildFormOptions(props) {
 
 
 
-export function DemoForm({formstate, form, submit, submitMessage, children}) {
+export function DemoForm({formstate, form, submit, submitMessage, instructions, children}) {
 
   const submitRef = useRef(null);
 
@@ -60,6 +60,7 @@ export function DemoForm({formstate, form, submit, submitMessage, children}) {
         ref={submitRef}
         message={submitMessage}
       />
+      {instructions}
     </Form>
   );
 }

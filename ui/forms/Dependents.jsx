@@ -3,8 +3,9 @@ import { rff, useFormstate, FormScope, FormField } from 'react-formstate-fp';
 import DemoFormContainer, { buildFormOptions, DemoForm, driveFormSubmission, submitValidModel } from '../components/DemoFormContainer.jsx';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
 import Dependent, { initialModel as dependentInitialModel, validationSchema as dependentValidationSchema } from './Dependent.jsx';
-import { Button } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 // import Button from 'react-bootstrap/Button';
+import Instructions from '../components/Instructions.jsx';
 
 
 const initialModel = {
@@ -68,9 +69,19 @@ export default function Dependents(props) {
     });
   }
 
+  const instructions = (
+    <Instructions>
+      <ListGroup>
+        <ListGroup.Item>See the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/Dependents.jsx'>source code</a> for the parent form.</ListGroup.Item>
+        <ListGroup.Item>See the <a href='https://github.com/dtrelogan/react-formstate-fp-demo/blob/HEAD/ui/forms/Dependent.jsx'>source code</a> for the nested form.</ListGroup.Item>
+        <ListGroup.Item>Set name to 'apifailure' to test an error during form submission.</ListGroup.Item>
+      </ListGroup>
+    </Instructions>
+  );
+
   return (
     <DemoFormContainer formstate={formstate} form={form}>
-      <DemoForm formstate={formstate} form={form} submit={submit}>
+      <DemoForm formstate={formstate} form={form} submit={submit} instructions={instructions}>
         <FormScope formstate={formstate} form={form}>
           <FormField name='name'>
             <InputAndFeedback type='text' label='Name'/>

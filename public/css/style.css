@@ -29,3 +29,5 @@ body {margin-bottom: 100px;}
   -webkit-transition: max-height 1.25s;
   transition: max-height 1.25s;
 }
+
+.instructions {margin-left: 20px; margin-top: 50px; max-width: 600px;}
