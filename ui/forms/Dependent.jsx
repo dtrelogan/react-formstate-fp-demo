@@ -56,9 +56,11 @@ const optionValues = buildOptionValues();
 
 
 
-function validateName(name) {
+function validateName(name, fs) {
   if (name[0] === name[0].toLowerCase()) {
-    return 'Name must be capitalized.';
+    // return 'Name must be capitalized.';
+    // Testing validation scope:
+    return rff.setInvalid(fs, 'name', 'Name must be capitalized.');
   }
 }
 

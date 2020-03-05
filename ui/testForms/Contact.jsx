@@ -6,16 +6,25 @@ import { Button, Card } from 'react-bootstrap';
 // import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 
-
-export const initialModel = {
-  age: '',
-  emails: []
-};
-
 const emailInitialModel = {
   type: 'Home',
   email: '',
   mailingAddress: addressInitialModel
+};
+
+const emailValidationSchema = {
+  fields: {
+    type: { required: true },
+    email: { required: true, validate: validateEmail, validateAsync: [verifyEmail, 'onBlur'] }
+  },
+  scopes: {
+    mailingAddress: { schema: addressValidationSchema }
+  }
+};
+
+export const initialModel = {
+  age: '',
+  emails: []
 };
 
 export const validationSchema = {
@@ -24,16 +33,6 @@ export const validationSchema = {
   },
   scopes: {
     emails: { required: true, schemaForEach: emailValidationSchema }
-  }
-};
-
-const emailValidationSchema = {
-  fields: {
-    type: { required: true },
-    email: { required: true, validate: validateEmail }
-  },
-  scopes: {
-    mailingAddress: { schema: addressValidationSchema }
   }
 };
 
@@ -111,4 +110,43 @@ function removeEmail(form, i) {
     fs = rff.deleteModelKey(fs, `emails.${i}`);
     return rff.synclyValidate(fs, 'emails', form);
   })
+}
+
+// Test field-async in a nested form
+
+function verifyEmail(value, formstate, form) {
+  if (value === rff.getInitialValue(formstate, 'email')) {
+    return formstate;
+  }
+
+  formstate = rff.setAsyncStarted(formstate, 'email', 'Verifying email...');
+  const asyncToken = rff.getAsyncToken(formstate, 'email');
+
+  const promise = new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      if (value && value.toLowerCase() === 'validation@failure.test') {
+        reject(new Error('Timeout while trying to communicate with the server.'));
+      }
+      if (value && value.toLowerCase() === 'bad@email.test') {
+        resolve("email failed verification.");
+      }
+      resolve(null);
+    }, 2000);
+  }).then((validationErrors) => {
+    form.setFormstate((fs) => {
+      if (!validationErrors) {
+        return rff.setAsynclyValid(asyncToken, fs, 'email', 'The email was verified successfully.');
+      }
+
+      fs = rff.setAsynclyInvalid(asyncToken, fs, 'email', 'The email failed verification.');
+
+      return fs;
+    });
+  }).catch((err) => {
+    form.setFormstate((fs) => {
+      return rff.setAsyncError(asyncToken, fs, 'email', err, 'An error occurred while verifying the email.');
+    });
+  });
+
+  return [formstate, asyncToken, promise];
 }

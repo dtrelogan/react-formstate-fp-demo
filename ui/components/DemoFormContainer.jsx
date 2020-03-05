@@ -181,7 +181,6 @@ export default function DemoFormContainer({formstate, form, children}) {
     const fullStatus = formstate.statuses[id];
 
     const trimmedStatus = {modelKey};
-    if (!rff.isScope(formstate, id) && fullStatus.initialValue) {trimmedStatus.initialValue = fullStatus.initialValue;}
     trimmedStatus.synclyValid = fullStatus.synclyValid;
     if (Object.keys(fullStatus.async).length > 0) {
       trimmedStatus.async = {...fullStatus.async};
@@ -213,6 +212,15 @@ export default function DemoFormContainer({formstate, form, children}) {
             <Card.Body>
               <pre>
                 {JSON.stringify(fieldStatuses, jsonUndefinedReplacer, 2)}
+              </pre>
+            </Card.Body>
+          </Card>
+          <br/>
+          <h3>Initial Model</h3>
+          <Card>
+            <Card.Body>
+              <pre>
+                {JSON.stringify(formstate.initialModel, jsonUndefinedReplacer, 2)}
               </pre>
             </Card.Body>
           </Card>
