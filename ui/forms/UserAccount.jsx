@@ -66,11 +66,11 @@ export default function UserAccount(props) {
         <ListGroup.Item>Existing usernames are 'buster' and 'taken'.</ListGroup.Item>
         <ListGroup.Item>Set the username to 'validationfailure' to test an error during asynchronous validation.</ListGroup.Item>
         <ListGroup.Item>Set the username to 'apifailure' to test an error during form submission.</ListGroup.Item>
-        <ListGroup.Item>To test 'Run Async onSubmit Even If Model Is Syncly Invalid', only populate the username field and hit submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Run Async onSubmit Even If Model Is Syncly Invalid', only populate the username field and hit enter to submit.</ListGroup.Item>
         <ListGroup.Item>To test 'Require Acknowledgement of Async Validation Errors', set the username to 'validationfailure' and tab to the next field without hitting submit.</ListGroup.Item>
-        <ListGroup.Item>To test 'Prime Submit Feedback: immediately', only populate the username field and hit submit.</ListGroup.Item>
-        <ListGroup.Item>To test 'Prime Submit Feedback: afterAsync', only populate the username field and hit submit.</ListGroup.Item>
-        <ListGroup.Item>To test 'Prime Submit Feedback: onCancel', set 'Edit Existing Model', set username to 'apifailure', and hit submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: immediately', only populate the username field and hit enter to submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: afterAsync', only populate the username field and hit enter to submit.</ListGroup.Item>
+        <ListGroup.Item>To test 'Prime Submit Feedback: onCancel', set 'Edit Existing Model', set username to 'apifailure', and hit enter to submit.</ListGroup.Item>
       </ListGroup>
     </Instructions>
   );
