@@ -3,7 +3,6 @@ import { FormScope, FormField, rff } from 'react-formstate-fp';
 import { InputAndFeedback } from '../components/rffBootstrap.jsx';
 import { Card } from 'react-bootstrap';
 // import Card from 'react-bootstrap/Card';
-import { library as validation } from 'react-formstate-validation';
 
 
 export const initialModel = {
@@ -48,7 +47,7 @@ function validateName(name) {
 
 
 function validateEmail(value) {
-  if (!validation.email(value)) {
+  if (!/^\S+@\S+\.\S+$/.test(value)) {
     return 'Not a valid email address';
   }
 }
