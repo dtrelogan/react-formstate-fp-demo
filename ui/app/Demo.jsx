@@ -20,6 +20,10 @@ import Select from '../components/Select.jsx';
 // import MiscTestJsxForm from '../testForms/MiscTestJsx.jsx';
 
 
+// this requires css-loader and style-loader in webpack
+import "react-datepicker/dist/react-datepicker.css";
+
+
 let nextKey = 0;
 
 

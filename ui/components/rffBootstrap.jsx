@@ -169,6 +169,7 @@ export function Input(props) {
 
     return (
       <DatePicker
+        name={rff.getRootModelKey(formstate, id)}
         className={`${className || ''} form-control ${isValid ? 'is-valid' : ''} ${isInvalid ? 'is-invalid' : ''}`}
         selected={rff.getValue(formstate, modelKey)}
         onChange={(v) => (handleChange || rff.handleChange)(form, v, id)}

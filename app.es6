@@ -12,10 +12,15 @@ import 'core-js/es';
 // import "regenerator-runtime/runtime"; // It's probably better to use the babel runtime with webpack anyway.
 
 import { createElement } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Demo from './ui/app/Demo.jsx';
 
-ReactDOM.render(
-  createElement(Demo),
+// Note that as of Feb 2026, React Bootstrap is not compatible with React 19.
+// I changed the below to be compatible with React 19,
+// but I'll have to stick with React 18 in package.json.
+
+let root = ReactDOM.createRoot(
   document.getElementById('react-mount-point')
 );
+root.render(createElement(Demo));
+

@@ -7,17 +7,18 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
   },
   // mode: 'development',
+  // devtool: 'source-map',
   // optimization: {
   //   minimize: false
   // },
   mode: 'production',
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-    'react-bootstrap': 'ReactBootstrap'
-  },
   module: {
     rules: [
+      // css-loader for react-datepicker
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      },
       {
         test: /(\.es6$|\.jsx$)/,
         exclude: /node_modules/,
@@ -44,7 +45,7 @@ module.exports = {
                   helpers: true,
                   regenerator: true,
                   useESModules: true,
-                  version: "^7.7.4"
+                  version: "^7.29.0"
                 }
               ]
             ]
